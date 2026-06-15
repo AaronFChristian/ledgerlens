@@ -184,4 +184,4 @@ print(result.model_dump_json(indent=2))
 
 ---
 
-**Cold-Outreach Hook:** *"I built a service that reads an invoice image into clean structured data and answers 'which suppliers behind last month's delayed POs also had quality issues' — with the full audit trail — using a knowledge graph instead of brittle vector search."*
+"I built a service that reads an invoice image into clean structured data and answers 'which suppliers behind last month's delayed POs also had quality issues' - with the full audit trail - using a knowledge graph instead of brittle vector search."
