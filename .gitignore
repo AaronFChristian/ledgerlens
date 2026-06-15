@@ -1,0 +1,65 @@
+cat > .gitignore << 'EOF'
+# ── Secrets ───────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ── Python ────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+.eggs/
+.mypy_cache/
+.ruff_cache/
+
+# ── Data (large files — never commit) ────────────
+data/samples/
+data/ground_truth/
+data/extraction_results/
+data/eval_results.json
+*.png
+*.jpg
+*.jpeg
+*.tiff
+*.tif
+*.pdf
+
+# ── Logs ──────────────────────────────────────────
+logs/
+*.log
+
+# ── Node / Frontend ───────────────────────────────
+node_modules/
+frontend/dist/
+frontend/.vite/
+.next/
+out/
+
+# ── macOS ─────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# ── VSCode ────────────────────────────────────────
+.vscode/settings.json
+.vscode/launch.json
+
+# ── Temp ──────────────────────────────────────────
+*.tmp
+tmp/
+.temp/
+
+# ── Notebooks ─────────────────────────────────────
+.ipynb_checkpoints/
+EOF
