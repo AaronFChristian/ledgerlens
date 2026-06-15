@@ -1,4 +1,4 @@
-# LedgerLens — Multimodal Invoice Intelligence + GraphRAG
+# LedgerLens - Multimodal Invoice Intelligence + GraphRAG
 
 > Reads an invoice image → extracts clean structured data → answers multi-hop supplier questions that vector search can't.
 
@@ -11,7 +11,7 @@
 
 ## Problem Statement
 
-Finance and procurement teams at mid-market firms manually key 50,000+ invoices/month at ~$3.50/invoice — a **$175K/month problem**. Worse, they can't answer relationship questions like:
+Finance and procurement teams at mid-market firms manually key 50,000+ invoices/month at ~$3.50/invoice - a **$175K/month problem**. Worse, they can't answer relationship questions like:
 
 > *"Which suppliers tied to delayed POs in Q3 also had quality complaints in the past 18 months?"*
 
@@ -68,15 +68,15 @@ Auto-approved    Human Review Queue
 
 | Feature | Why It Matters |
 |---------|---------------|
-| **Multimodal extraction (Claude vision)** | Handles scanned/photographed invoices — no OCR pre-processing required |
-| **Pydantic structured outputs + confidence routing** | Low-confidence fields flagged for human review — the production realism employers look for |
+| **Multimodal extraction (Claude vision)** | Handles scanned/photographed invoices - no OCR pre-processing required |
+| **Pydantic structured outputs + confidence routing** | Low-confidence fields flagged for human review - the production realism employers look for |
 | **LLM entity resolution** | Normalises "Apple Inc"/"Apple Computer" → one Neo4j node; the documented silent failure mode of GraphRAG |
 | **Neo4j knowledge graph** | `Supplier ↔ Invoice ↔ LineItem ↔ PO` enables multi-hop questions vector search can't answer |
 | **GraphRAG agent (LangGraph)** | Returns traversal path as auditable explanation — required by regulated buyers |
-| **DeepEval / RAGAS eval harness** | Field-level accuracy + groundedness + context relevance, CI-gated — "the hardest skill to fake" |
+| **DeepEval / RAGAS eval harness** | Field-level accuracy + groundedness + context relevance, CI-gated - "the hardest skill to fake" |
 | **Full observability (Langfuse)** | Span-level tracing: extraction → resolution → retrieval → answer + token cost per document |
-| **Cost panel** | Per-document LLM cost vs $3.50 manual baseline — signals cost-optimisation discipline |
-| **GraphRAG vs vector-only comparison** | Side-by-side on multi-hop questions — quantifies why the graph matters |
+| **Cost panel** | Per-document LLM cost vs $3.50 manual baseline - signals cost-optimisation discipline |
+| **GraphRAG vs vector-only comparison** | Side-by-side on multi-hop questions - quantifies why the graph matters |
 
 ---
 
@@ -97,7 +97,7 @@ Infra:              Docker · Fly.io (API) · Neo4j Aura (free tier)
 
 ## 3-Day Build Plan
 
-### Day 1 — Extraction Pipeline ✅
+### Day 1 - Extraction Pipeline ✅
 - [x] Claude vision → Pydantic schema extraction with structured JSON prompt
 - [x] Per-field confidence scoring (0.0–1.0) with math cross-validation
 - [x] Human-review routing for low-confidence documents
@@ -105,14 +105,14 @@ Infra:              Docker · Fly.io (API) · Neo4j Aura (free tier)
 - [x] Field-level accuracy evaluation against ground-truth labels
 - [x] Full pytest test suite
 
-### Day 2 — Knowledge Graph + GraphRAG Agent
+### Day 2 - Knowledge Graph + GraphRAG Agent
 - [ ] Neo4j Aura schema: `(:Supplier)→[:ISSUED]→(:Invoice)→[:CONTAINS]→(:LineItem)`
 - [ ] LLM entity resolution: normalise supplier name variants → single canonical node
 - [ ] LangGraph agent state machine: `extract → resolve → load → answer`
 - [ ] Hybrid retrieval: pgvector semantic seed + Neo4j graph traversal
 - [ ] Traversal path returned as auditable explanation
 
-### Day 3 — Evals, Observability, Deploy
+### Day 3 - Evals, Observability, Deploy
 - [ ] DeepEval/RAGAS harness: field accuracy + groundedness + context relevance
 - [ ] GraphRAG vs vector-only comparison notebook with results table
 - [ ] Langfuse/Phoenix tracing: span-level view + token cost per document
